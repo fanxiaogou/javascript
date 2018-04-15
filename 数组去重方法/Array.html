@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+	方法一：
+			遍历数组，建立新数组，利用indexOf判断是否存在于新数组中，不存在则push到新数组，最后返回新数组
+			let arr = [1,2,3,4,5,6,2,3,4,5,6];
+				function removal(ar){
+					let ret = [];
+					for(var i=0;i<ar.length;i++){
+						if(ret.indexOf(ar[i]) === -1){
+							ret.push(ar[i]);
+						}
+					}
+					return ret;
+				}
+			console.log(removal(arr))
+			
+	方法二：
+			对数组进行先排序，排完序之后在让元素与前一个元素做对比，相同的就去掉
+				对数组进行排序
+					arr.sort();
+					for(var i=0;i<arr.length;i++){
+						if(arr[i] === arr[i-1]){
+							arr.splice(i,1)
+						}
+					}
+				console.log(arr)
+
+	方法三：
+			遍历数组，利用object对象保存数组值，判断数组值是否已经保存在object中，未保存则push到新数组并用object[arrayItem]=1的方式记录保存
+			function removal(ar){
+				let ret = [];
+				let obj = {};
+				for(var i=0;i<ar.length;i++){
+					if(!obj[ar[i]]){
+						obj[ar[i]] = 1;
+						ret.push(ar[i]);
+					}
+				}
+				return ret;
+			}
+			console.log(removal(arr))
+		</script>
+	
+	
+	</body>
+</html>
